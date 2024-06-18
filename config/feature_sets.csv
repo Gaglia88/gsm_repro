@@ -1,0 +1,256 @@
+conf_id;conf
+1;cfibf
+2;raccb
+3;js
+4;rs
+5;aejs
+6;nrs
+7;wjs
+8;cfibf, raccb
+9;cfibf, js
+10;cfibf, rs
+11;cfibf, aejs
+12;cfibf, nrs
+13;cfibf, wjs
+14;raccb, js
+15;raccb, rs
+16;raccb, aejs
+17;raccb, nrs
+18;raccb, wjs
+19;js, rs
+20;js, aejs
+21;js, nrs
+22;js, wjs
+23;numCompP1, numCompP2
+24;rs, aejs
+25;rs, nrs
+26;rs, wjs
+27;aejs, nrs
+28;aejs, wjs
+29;nrs, wjs
+30;cfibf, raccb, js
+31;cfibf, raccb, rs
+32;cfibf, raccb, aejs
+33;cfibf, raccb, nrs
+34;cfibf, raccb, wjs
+35;cfibf, js, rs
+36;cfibf, js, aejs
+37;cfibf, js, nrs
+38;cfibf, js, wjs
+39;cfibf, numCompP1, numCompP2
+40;cfibf, rs, aejs
+41;cfibf, rs, nrs
+42;cfibf, rs, wjs
+43;cfibf, aejs, nrs
+44;cfibf, aejs, wjs
+45;cfibf, nrs, wjs
+46;raccb, js, rs
+47;raccb, js, aejs
+48;raccb, js, nrs
+49;raccb, js, wjs
+50;raccb, numCompP1, numCompP2
+51;raccb, rs, aejs
+52;raccb, rs, nrs
+53;raccb, rs, wjs
+54;raccb, aejs, nrs
+55;raccb, aejs, wjs
+56;raccb, nrs, wjs
+57;js, numCompP1, numCompP2
+58;js, rs, aejs
+59;js, rs, nrs
+60;js, rs, wjs
+61;js, aejs, nrs
+62;js, aejs, wjs
+63;js, nrs, wjs
+64;numCompP1, numCompP2, rs
+65;numCompP1, numCompP2, aejs
+66;numCompP1, numCompP2, nrs
+67;numCompP1, numCompP2, wjs
+68;rs, aejs, nrs
+69;rs, aejs, wjs
+70;rs, nrs, wjs
+71;aejs, nrs, wjs
+72;cfibf, raccb, js, rs
+73;cfibf, raccb, js, aejs
+74;cfibf, raccb, js, nrs
+75;cfibf, raccb, js, wjs
+76;cfibf, raccb, numCompP1, numCompP2
+77;cfibf, raccb, rs, aejs
+78;cfibf, raccb, rs, nrs
+79;cfibf, raccb, rs, wjs
+80;cfibf, raccb, aejs, nrs
+81;cfibf, raccb, aejs, wjs
+82;cfibf, raccb, nrs, wjs
+83;cfibf, js, numCompP1, numCompP2
+84;cfibf, js, rs, aejs
+85;cfibf, js, rs, nrs
+86;cfibf, js, rs, wjs
+87;cfibf, js, aejs, nrs
+88;cfibf, js, aejs, wjs
+89;cfibf, js, nrs, wjs
+90;cfibf, numCompP1, numCompP2, rs
+91;cfibf, numCompP1, numCompP2, aejs
+92;cfibf, numCompP1, numCompP2, nrs
+93;cfibf, numCompP1, numCompP2, wjs
+94;cfibf, rs, aejs, nrs
+95;cfibf, rs, aejs, wjs
+96;cfibf, rs, nrs, wjs
+97;cfibf, aejs, nrs, wjs
+98;raccb, js, numCompP1, numCompP2
+99;raccb, js, rs, aejs
+100;raccb, js, rs, nrs
+101;raccb, js, rs, wjs
+102;raccb, js, aejs, nrs
+103;raccb, js, aejs, wjs
+104;raccb, js, nrs, wjs
+105;raccb, numCompP1, numCompP2, rs
+106;raccb, numCompP1, numCompP2, aejs
+107;raccb, numCompP1, numCompP2, nrs
+108;raccb, numCompP1, numCompP2, wjs
+109;raccb, rs, aejs, nrs
+110;raccb, rs, aejs, wjs
+111;raccb, rs, nrs, wjs
+112;raccb, aejs, nrs, wjs
+113;js, numCompP1, numCompP2, rs
+114;js, numCompP1, numCompP2, aejs
+115;js, numCompP1, numCompP2, nrs
+116;js, numCompP1, numCompP2, wjs
+117;js, rs, aejs, nrs
+118;js, rs, aejs, wjs
+119;js, rs, nrs, wjs
+120;js, aejs, nrs, wjs
+121;numCompP1, numCompP2, rs, aejs
+122;numCompP1, numCompP2, rs, nrs
+123;numCompP1, numCompP2, rs, wjs
+124;numCompP1, numCompP2, aejs, nrs
+125;numCompP1, numCompP2, aejs, wjs
+126;numCompP1, numCompP2, nrs, wjs
+127;rs, aejs, nrs, wjs
+128;cfibf, raccb, js, numCompP1, numCompP2
+129;cfibf, raccb, js, rs, aejs
+130;cfibf, raccb, js, rs, nrs
+131;cfibf, raccb, js, rs, wjs
+132;cfibf, raccb, js, aejs, nrs
+133;cfibf, raccb, js, aejs, wjs
+134;cfibf, raccb, js, nrs, wjs
+135;cfibf, raccb, numCompP1, numCompP2, rs
+136;cfibf, raccb, numCompP1, numCompP2, aejs
+137;cfibf, raccb, numCompP1, numCompP2, nrs
+138;cfibf, raccb, numCompP1, numCompP2, wjs
+139;cfibf, raccb, rs, aejs, nrs
+140;cfibf, raccb, rs, aejs, wjs
+141;cfibf, raccb, rs, nrs, wjs
+142;cfibf, raccb, aejs, nrs, wjs
+143;cfibf, js, numCompP1, numCompP2, rs
+144;cfibf, js, numCompP1, numCompP2, aejs
+145;cfibf, js, numCompP1, numCompP2, nrs
+146;cfibf, js, numCompP1, numCompP2, wjs
+147;cfibf, js, rs, aejs, nrs
+148;cfibf, js, rs, aejs, wjs
+149;cfibf, js, rs, nrs, wjs
+150;cfibf, js, aejs, nrs, wjs
+151;cfibf, numCompP1, numCompP2, rs, aejs
+152;cfibf, numCompP1, numCompP2, rs, nrs
+153;cfibf, numCompP1, numCompP2, rs, wjs
+154;cfibf, numCompP1, numCompP2, aejs, nrs
+155;cfibf, numCompP1, numCompP2, aejs, wjs
+156;cfibf, numCompP1, numCompP2, nrs, wjs
+157;cfibf, rs, aejs, nrs, wjs
+158;raccb, js, numCompP1, numCompP2, rs
+159;raccb, js, numCompP1, numCompP2, aejs
+160;raccb, js, numCompP1, numCompP2, nrs
+161;raccb, js, numCompP1, numCompP2, wjs
+162;raccb, js, rs, aejs, nrs
+163;raccb, js, rs, aejs, wjs
+164;raccb, js, rs, nrs, wjs
+165;raccb, js, aejs, nrs, wjs
+166;raccb, numCompP1, numCompP2, rs, aejs
+167;raccb, numCompP1, numCompP2, rs, nrs
+168;raccb, numCompP1, numCompP2, rs, wjs
+169;raccb, numCompP1, numCompP2, aejs, nrs
+170;raccb, numCompP1, numCompP2, aejs, wjs
+171;raccb, numCompP1, numCompP2, nrs, wjs
+172;raccb, rs, aejs, nrs, wjs
+173;js, numCompP1, numCompP2, rs, aejs
+174;js, numCompP1, numCompP2, rs, nrs
+175;js, numCompP1, numCompP2, rs, wjs
+176;js, numCompP1, numCompP2, aejs, nrs
+177;js, numCompP1, numCompP2, aejs, wjs
+178;js, numCompP1, numCompP2, nrs, wjs
+179;js, rs, aejs, nrs, wjs
+180;numCompP1, numCompP2, rs, aejs, nrs
+181;numCompP1, numCompP2, rs, aejs, wjs
+182;numCompP1, numCompP2, rs, nrs, wjs
+183;numCompP1, numCompP2, aejs, nrs, wjs
+184;cfibf, raccb, js, numCompP1, numCompP2, rs
+185;cfibf, raccb, js, numCompP1, numCompP2, aejs
+186;cfibf, raccb, js, numCompP1, numCompP2, nrs
+187;cfibf, raccb, js, numCompP1, numCompP2, wjs
+188;cfibf, raccb, js, rs, aejs, nrs
+189;cfibf, raccb, js, rs, aejs, wjs
+190;cfibf, raccb, js, rs, nrs, wjs
+191;cfibf, raccb, js, aejs, nrs, wjs
+192;cfibf, raccb, numCompP1, numCompP2, rs, aejs
+193;cfibf, raccb, numCompP1, numCompP2, rs, nrs
+194;cfibf, raccb, numCompP1, numCompP2, rs, wjs
+195;cfibf, raccb, numCompP1, numCompP2, aejs, nrs
+196;cfibf, raccb, numCompP1, numCompP2, aejs, wjs
+197;cfibf, raccb, numCompP1, numCompP2, nrs, wjs
+198;cfibf, raccb, rs, aejs, nrs, wjs
+199;cfibf, js, numCompP1, numCompP2, rs, aejs
+200;cfibf, js, numCompP1, numCompP2, rs, nrs
+201;cfibf, js, numCompP1, numCompP2, rs, wjs
+202;cfibf, js, numCompP1, numCompP2, aejs, nrs
+203;cfibf, js, numCompP1, numCompP2, aejs, wjs
+204;cfibf, js, numCompP1, numCompP2, nrs, wjs
+205;cfibf, js, rs, aejs, nrs, wjs
+206;cfibf, numCompP1, numCompP2, rs, aejs, nrs
+207;cfibf, numCompP1, numCompP2, rs, aejs, wjs
+208;cfibf, numCompP1, numCompP2, rs, nrs, wjs
+209;cfibf, numCompP1, numCompP2, aejs, nrs, wjs
+210;raccb, js, numCompP1, numCompP2, rs, aejs
+211;raccb, js, numCompP1, numCompP2, rs, nrs
+212;raccb, js, numCompP1, numCompP2, rs, wjs
+213;raccb, js, numCompP1, numCompP2, aejs, nrs
+214;raccb, js, numCompP1, numCompP2, aejs, wjs
+215;raccb, js, numCompP1, numCompP2, nrs, wjs
+216;raccb, js, rs, aejs, nrs, wjs
+217;raccb, numCompP1, numCompP2, rs, aejs, nrs
+218;raccb, numCompP1, numCompP2, rs, aejs, wjs
+219;raccb, numCompP1, numCompP2, rs, nrs, wjs
+220;raccb, numCompP1, numCompP2, aejs, nrs, wjs
+221;js, numCompP1, numCompP2, rs, aejs, nrs
+222;js, numCompP1, numCompP2, rs, aejs, wjs
+223;js, numCompP1, numCompP2, rs, nrs, wjs
+224;js, numCompP1, numCompP2, aejs, nrs, wjs
+225;numCompP1, numCompP2, rs, aejs, nrs, wjs
+226;cfibf, raccb, js, numCompP1, numCompP2, rs, aejs
+227;cfibf, raccb, js, numCompP1, numCompP2, rs, nrs
+228;cfibf, raccb, js, numCompP1, numCompP2, rs, wjs
+229;cfibf, raccb, js, numCompP1, numCompP2, aejs, nrs
+230;cfibf, raccb, js, numCompP1, numCompP2, aejs, wjs
+231;cfibf, raccb, js, numCompP1, numCompP2, nrs, wjs
+232;cfibf, raccb, js, rs, aejs, nrs, wjs
+233;cfibf, raccb, numCompP1, numCompP2, rs, aejs, nrs
+234;cfibf, raccb, numCompP1, numCompP2, rs, aejs, wjs
+235;cfibf, raccb, numCompP1, numCompP2, rs, nrs, wjs
+236;cfibf, raccb, numCompP1, numCompP2, aejs, nrs, wjs
+237;cfibf, js, numCompP1, numCompP2, rs, aejs, nrs
+238;cfibf, js, numCompP1, numCompP2, rs, aejs, wjs
+239;cfibf, js, numCompP1, numCompP2, rs, nrs, wjs
+240;cfibf, js, numCompP1, numCompP2, aejs, nrs, wjs
+241;cfibf, numCompP1, numCompP2, rs, aejs, nrs, wjs
+242;raccb, js, numCompP1, numCompP2, rs, aejs, nrs
+243;raccb, js, numCompP1, numCompP2, rs, aejs, wjs
+244;raccb, js, numCompP1, numCompP2, rs, nrs, wjs
+245;raccb, js, numCompP1, numCompP2, aejs, nrs, wjs
+246;raccb, numCompP1, numCompP2, rs, aejs, nrs, wjs
+247;js, numCompP1, numCompP2, rs, aejs, nrs, wjs
+248;cfibf, raccb, js, numCompP1, numCompP2, rs, aejs, nrs
+249;cfibf, raccb, js, numCompP1, numCompP2, rs, aejs, wjs
+250;cfibf, raccb, js, numCompP1, numCompP2, rs, nrs, wjs
+251;cfibf, raccb, js, numCompP1, numCompP2, aejs, nrs, wjs
+252;cfibf, raccb, numCompP1, numCompP2, rs, aejs, nrs, wjs
+253;cfibf, js, numCompP1, numCompP2, rs, aejs, nrs, wjs
+254;raccb, js, numCompP1, numCompP2, rs, aejs, nrs, wjs
+255;cfibf, raccb, js, numCompP1, numCompP2, rs, aejs, nrs, wjs
