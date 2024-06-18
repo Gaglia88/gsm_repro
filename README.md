@@ -1,4 +1,4 @@
-## Reproducibility experiments of Generalized Supervised Meta-blocking
+## Reproducibility experiments for Generalized Supervised Meta-blocking
 This repository contains the code to reproduce the experiments performed in [1].
 
 ### Structure
