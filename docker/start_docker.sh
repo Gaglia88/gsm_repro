@@ -1,0 +1,1 @@
+docker compose run --rm gsm_repro

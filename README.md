@@ -32,7 +32,7 @@ Open the file `run_all_tests.sh` and set the `MAX_MEMORY` parameter based on you
 
 2. Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
 
-3. When all the experiments are completed, run the script `start notebook.sh`.
+3. When all the experiments are completed, run the script `start_notebook.sh`.
 This will start Jupyter inside the docker-machine which has a port forwarding on port 8888.
 Opening from the browser *your machine ip:8888* will open the notebook environment.
 Running the notebook it is possible to reproduce all the Figures/Tables of the paper [1].
