@@ -33,6 +33,7 @@ RUN pip install pyarrow
 RUN pip install fastparquet
 RUN pip install networkx==2.6.3
 RUN pip install jupyter
+RUN pip install matplotlib
 
 #RUN wget https://archive.apache.org/dist/spark/spark-3.0.1/spark-3.0.1-bin-hadoop2.7.tgz
 #RUN tar -xvf spark-3.0.1-bin-hadoop2.7.tgz
