@@ -14,6 +14,7 @@ This repository contains the code to reproduce the experiments performed in [1].
 * The original experiments were performed on a machine with four Intel Xeon E5-2697 2.40 GHz (72 cores), 216 GB of RAM, running Ubuntu 18.04.
 With less memory, the largest datasets could cause out-of-memory issues. In particular, 200K and 300K datasets could cause this issue, a solution to test everything is to lower the *purging_threshold* parameter in the file *datasets/datasets.json*. This will cause a more aggressive pruning, reducing the number of retained comparisons, but also recall.
 * [Docker](http://www.docker.com) is needed to run the experiments.
+* To perform the comparison with the other tools (Table 5 in the paper) a GPU is needed. Also Docker need to be configured to use it, this requires to install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
 ### Setup
 #### Step 1
