@@ -26,13 +26,14 @@ Open the file `config/config.ini` and set, based on your system,
 #### Step 2
 Open the file `run_all_tests.sh` and set the `MAX_MEMORY` parameter based on your system configuration. This is the maximum memory that can be used by the Java Virtual Machine.
 
-### Reproduce the experiments
+#### Step 3
+Open a shell, move to the `docker` folder, and run the script `start_docker.sh`. The script will run the docker-machine and login inside it.
 
-1. Open a shell, move to the `docker` folder, and run the script `start_docker.sh`. The script will run the docker-machine and login inside it.
+#### Step 4
+Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
 
-2. Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
-
-3. When all the experiments are completed, run the script `start_notebook.sh`.
+#### Step 5
+When all the experiments are completed, run the script `start notebook.sh`.
 This will start Jupyter inside the docker-machine which has a port forwarding on port 8888.
 Opening from the browser *your machine ip:8888* will open the notebook environment.
 Running the notebook it is possible to reproduce all the Figures/Tables of the paper [1].

@@ -1,1 +1,1 @@
-docker compose run --rm gsm_repro
+docker compose run --service-ports --rm gsm_repro

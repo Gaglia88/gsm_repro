@@ -31,7 +31,7 @@ def get_auc(res, gt_size, levels=[1, 5, 10, 20]):
     
 def calc_dataset_auc(basepath, dataset, avg=True):
     global all_features, num_matches
-    outdir = f"{basepath}/comparisons/{dataset}/"
+    outdir = f"{basepath}/files/comparisons/{dataset}/"
     #df = pd.DataFrame(columns=["method", "auc_1", "auc_5", "auc_10", "auc_20"])
     res = []
     for i in range(0, 5):
@@ -84,7 +84,7 @@ def load_data(basepath, datasets, avg=True):
 basepath = "/home/app/progressive/"
 df_clean = load_data(basepath, clean_datasets)
 
-df_clean.to_csv('clean_results.csv', sep=";", index=False)
+df_clean.to_csv('/home/app/results/progressive_clean_results.csv', sep=";", index=False)
 
 df_dirty = load_data(basepath, dirty_datasets)
-df_dirty.to_csv('dirty_results.csv', sep=";", index=False)
+df_dirty.to_csv('/home/app/results/progressive_dirty_results.csv', sep=";", index=False)
