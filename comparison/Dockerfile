@@ -1,0 +1,65 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+ADD . /home/app
+WORKDIR /home/app
+
+RUN apt-get update
+RUN apt-get install -y build-essential git curl wget
+RUN apt-get install -y python3-distutils
+RUN apt-get install -y python3-dev
+
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+ENV PATH=$CONDA_DIR/bin:$PATH
+RUN conda create -n py10 python=3.10 -y
+
+RUN wget https://downloads.apache.org/lucene/pylucene/pylucene-9.4.1-src.tar.gz
+RUN tar -xvf pylucene-9.4.1-src.tar.gz
+RUN rm pylucene-9.4.1-src.tar.gz
+
+RUN wget  https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.3%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz
+RUN tar -xvf OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz
+RUN rm OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz
+RUN mv /home/app/jdk-17.0.3+7/ /usr/bin/temurin-jdk-17.0.3+7/
+
+ENV JAVA_HOME /usr/bin/temurin-jdk-17.0.3+7/
+ENV PATH $JAVA_HOME/bin:$PATH
+ENV JCC_JDK /usr/bin/temurin-jdk-17.0.3+7/
+ENV PYTHON=/opt/conda/envs/py10/bin/python
+ENV PREFIX_PYTHON=/opt/apache/pylucene/_install
+ENV JCC="$PYTHON -m jcc --shared"
+ENV NUM_FILES=16
+
+WORKDIR /home/app/pylucene-9.4.1/jcc
+RUN conda init && . ~/.bashrc && conda activate py10 && python setup.py build
+RUN conda init && . ~/.bashrc && conda activate py10 && python setup.py install
+
+WORKDIR /home/app/pylucene-9.4.1
+RUN conda init && . ~/.bashrc && conda activate py10 && make
+RUN conda init && . ~/.bashrc && conda activate py10 && make install
+
+WORKDIR /home/app
+
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install scikit-learn
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install torch
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install fasttext
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install torchtext
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install joblib==1.2.0
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install mmh3==3.0.0
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install numba==0.56.4
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install numpy==1.21.5
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install numpydoc==1.5.0
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install psutil==5.9.4
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install pyarrow==10.0.1
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install pyspark==3.3.1
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install scipy==1.8.0
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install tqdm==4.64.1
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install pandas==1.5.2
+
+RUN 	
+RUN conda init && . ~/.bashrc && conda activate py9 && pip install simcse==0.4
+RUN conda init && . ~/.bashrc && conda activate py9 && pip install cdlib==0.4.0
