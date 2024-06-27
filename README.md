@@ -23,7 +23,7 @@ In the paper we compared the performance of Generalized Supervised Meta-blocking
 To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
 
 ##### Step 1
-Move in the `comparison` folder and run the command `start docker`, this will create and start a new docker machine called `gsm_comparison`.
+Move in the `comparison` folder and run the command `start_docker.sh`, this will create and start a new docker machine called `gsm_comparison`.
 
 ##### Step 2
 Inside the docker machine, move in the `comparison` folder and run the script `run_all_exp.sh`, this will process all datasets with the four frameworks.
