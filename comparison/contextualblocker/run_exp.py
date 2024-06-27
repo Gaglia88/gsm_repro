@@ -117,6 +117,7 @@ datasets = load_datasets(dtype='clean')
 out = open('/home/app/results/contextual_blocker.csv', 'wt')
 out.write("dataset;recall;precision;f1;ov_time\n")
 for d in datasets:
+    print(f"Processing {d['name']}")
     # 1) LOAD and PREPROCESS the dataset
     dataset_name, table, pairs = load_data(d)
 

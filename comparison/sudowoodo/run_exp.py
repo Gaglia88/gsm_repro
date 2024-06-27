@@ -2,6 +2,9 @@ import pandas as pd
 import time
 import subprocess
 import pickle
+import traceback
+import shutil
+import os
 
 def calc_metrics(dataset, basepath):
     pf = open('blocking_result.pkl', 'rb')
@@ -40,6 +43,7 @@ def process(dataset, basepath='em'):
     etrain = time.time()
     
     d = f"/home/app/comparison/sudowoodo/data/{basepath}/{dataset}"
+    print(d)
     
     p2 = subprocess.Popen(['python', 'blocking.py', '--task', d, '--logdir', 'result_blocking', '--batch_size', '512', '--max_len', '128', '--projector', '4096', '--lm', 'distilbert', '--fp16', '--k', '50', '--ckpt_path', f'result_blocking/{dataset}/ssl.pt'])
     p2.wait()
@@ -55,28 +59,43 @@ datasets = ['abtBuy', 'DblpAcm', 'movies', 'imdb_tvdb', 'tmdb_tvdb', 'scholarDbl
 
 
 if __name__ == "__main__":
-    out = open('/home/app/results/sudowoodo_results.csv', 'wt')
-    out.write("dataset, recall, precision, f1, train_time, block_time, ov_time\n")
+    if os.path.isdir('/home/app/comparison/sudowoodo/data/em_500'):
+        os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_50')
+        os.rename('/home/app/comparison/sudowoodo/data/em_500', '/home/app/comparison/sudowoodo/data/em')
+
+    out = open('/home/app/results/sudowoodo_results_500.csv', 'wt')
+    out.write("dataset;recall;precision;f1;train_time;block_time;ov_time\n")
     for d in datasets:
         try:
             print(d)
             recall, precision, f1, train_time, block_time, ov_time = process(d)
-            out.write(f"{d}, {recall}, {precision}, {f1}, {train_time}, {block_time}, {ov_time}\n")
+            out.write(f"{d};{recall};{precision};{f1};{train_time};{block_time};{ov_time}\n")
             out.flush()
         except:
-            out.write(d)
+            print(traceback.format_exc())
             pass
     out.close()
     
+    shutil.rmtree('/home/app/comparison/sudowoodo/result_blocking')
+    shutil.rmtree('/home/app/comparison/sudowoodo/mlruns')
+    
+    #Sudowoodo has hardcoded paths, so I need to proceed in this way
+    os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_500')
+    os.rename('/home/app/comparison/sudowoodo/data/em_50', '/home/app/comparison/sudowoodo/data/em')
+    
     out = open('/home/app/results/sudowoodo_results_50.csv', 'wt')
-    out.write("dataset, recall, precision, f1, train_time, block_time, ov_time\n")
+    out.write("dataset;recall;precision;f1;train_time;block_time;ov_time\n")
     for d in datasets:
         try:
             print(d)
-            recall, precision, f1, train_time, block_time, ov_time = process(d, basepath="em_50")
-            out.write(f"{d}, {recall}, {precision}, {f1}, {train_time}, {block_time}, {ov_time}\n")
+            recall, precision, f1, train_time, block_time, ov_time = process(d)
+            out.write(f"{d};{recall};{precision};{f1};{train_time};{block_time};{ov_time}\n")
             out.flush()
         except:
-            out.write(d)
+            print(traceback.format_exc())
             pass
     out.close()
+    
+    #Sudowoodo has hardcoded paths, so I need to proceed in this way
+    os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_50')
+    os.rename('/home/app/comparison/sudowoodo/data/em_500', '/home/app/comparison/sudowoodo/data/em')

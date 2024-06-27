@@ -64,8 +64,10 @@ RUN conda init && . ~/.bashrc && conda activate py10 && pip install pandas==1.5.
 RUN conda create -n py9 python=3.9 -y
 RUN conda init && . ~/.bashrc && conda activate py9 && pip install simcse==0.4
 RUN conda init && . ~/.bashrc && conda activate py9 && pip install cdlib==0.4.0
+RUN conda init && . ~/.bashrc && conda activate py9 && networkx==2.6.0 
 
 RUN  conda create -n py37 python=3.7.10
+#RUN conda init && . ~/.bashrc && conda activate py37 && conda install -c nvidia -y cuda-nvcc
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install numpy==1.21.6
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install regex==2024.4.16
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install scipy==1.7.3
@@ -80,6 +82,5 @@ RUN conda init && . ~/.bashrc && conda activate py37 && pip install tqdm==4.66.4
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install transformers==4.30.2
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install pandas==1.3.5
 RUN conda init && . ~/.bashrc && conda activate py37 && pip install mlflow==1.30.1
-RUN conda init && . ~/.bashrc && conda activate py37 && conda install -c nvidia cuda-nvcc -y
-RUN git clone https://github.com/NVIDIA/apex
-RUN conda init && . ~/.bashrc && conda activate py37 && cd apex && python setup.py install
+#RUN git clone https://github.com/NVIDIA/apex
+#RUN conda init && . ~/.bashrc && conda activate py37 && cd apex && python setup.py install
