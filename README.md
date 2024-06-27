@@ -17,37 +17,38 @@ With less memory, the largest datasets could cause out-of-memory issues. In part
 * [Docker](http://www.docker.com) is needed to run the experiments.
 * To perform the comparison with the other tools (Table 5 in the paper) a GPU is needed. Also Docker need to be configured to use it, this require to install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
-### Reproduce the comparison with other frameworks
+### Reproduce the experiments
+#### 1. Comparison with other frameworks
 In the paper we compared the performance of Generalized Supervised Meta-blocking with [Sudowoodo](https://github.com/megagonlabs/sudowoodo), [ContextualBlocker](https://github.com/boscoj2008/ContextualBlocker-for-EM), [DeepBlocker](https://github.com/qcri/DeepBlocker) and [Sparkly](https://github.com/anhaidgroup/sparkly).
 To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
 
-### Step 1
+##### Step 1
 Move in the `comparison` folder and run the command `start docker`, this will create and start a new docker machine called `gsm_comparison`.
 
-### Step 2
+##### Step 2
 Inside the docker machine, move in the `comparison` folder and run the script `run_all_exp.sh`, this will process all datasets with the four frameworks.
 
-### Step 3
+##### Step 3
 Close the docker machine and proceed with the main experiments.
 
-### Reproduce the main experiments
-#### Step 1
+### 2. Main experiments
+##### Step 1
 Open the file `config/config.ini` and set, based on your system,
 * `max_memory` is the maximum memory used by Apache Spark.
 * `parallel_process` is the number of parallel processes that run in some experiments. A higher value requires more memory, so it can cause out-of-memory problems.
 * `repetitions` number of repetitions for each experiment. The default value is 10, a lower value requires less time to complete all the experiments.
 **Do not touch the other parameters in the configuration file.**
 
-#### Step 2
+##### Step 2
 Open the file `run_all_tests.sh` and set the `MAX_MEMORY` parameter based on your system configuration. This is the maximum memory that can be used by the Java Virtual Machine.
 
-#### Step 3
+##### Step 3
 Open a shell, move to the `docker` folder, and run the script `start_docker.sh`. The script will run the docker-machine and login inside it.
 
-#### Step 4
+##### Step 4
 Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
 
-#### Step 5
+##### Step 5
 When all the experiments are completed, run the script `start_notebook.sh`.
 This will start Jupyter inside the docker-machine which has a port forwarding on port 8888.
 Opening from the browser *your machine ip:8888* will open the notebook environment.
