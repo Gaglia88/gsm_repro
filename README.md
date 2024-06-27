@@ -21,6 +21,15 @@ With less memory, the largest datasets could cause out-of-memory issues. In part
 In the paper we compared the performance of Generalized Supervised Meta-blocking with [Sudowoodo](https://github.com/megagonlabs/sudowoodo), [ContextualBlocker](https://github.com/boscoj2008/ContextualBlocker-for-EM), [DeepBlocker](https://github.com/qcri/DeepBlocker) and [Sparkly](https://github.com/anhaidgroup/sparkly).
 To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
 
+### Step 1
+Move in the `comparison` folder and run the command `start docker`, this will create and start a new docker machine called `gsm_comparison`.
+
+### Step 2
+Inside the docker machine, move in the `comparison` folder and run the script `run_all_exp.sh`, this will process all datasets with the four frameworks.
+
+### Step 3
+Close the docker machine and proceed with the main experiments.
+
 ### Reproduce the main experiments
 #### Step 1
 Open the file `config/config.ini` and set, based on your system,
