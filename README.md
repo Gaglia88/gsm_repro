@@ -4,11 +4,12 @@ This repository contains the code to reproduce the experiments performed in [1].
 ### Structure
 * *datasets* contains the datasets used in the project. They will be downloaded at the first execution of `run_all_tests.sh` script. It is possible to edit the file *datasets/datasets.json* to add/remove them. For each dataset, the parameter *purging_threshold* (default value 1.0) affects the number of retained comparisons, decreasing it will discard more comparisons, but reducing recall. It can be lowered for the larger datasets if the available RAM is not enough (see also requirements section).
 *  *config* contains the list of available feature sets and a configuration file. The configuration file lets to set the maximum memory for Spark execution, the number of parallel processes that run at a time in the different experiments, and the number of repetitions for each experiment.
-* *docker* contains the docker files.
+* *docker* contains the docker files to create a machine to reproduce the main experiments.
 * *java* contains the Java code, needed for the experiments.
 * *python* contains the Python code, needed for the experiments.
 * *scala* contains the Scala code, needed for the experiments.
-* *notebooks* contain the notebooks needed to generate the charts/tables of the paper.
+* *notebooks* contains the notebooks needed to generate the charts/tables of the paper.
+* *comparison* contains the code needed to reproduce the comparison with other frameworks (Table 5 of the paper).
 
 ### Requirements
 * The original experiments were performed on a machine with four Intel Xeon E5-2697 2.40 GHz (72 cores), 216 GB of RAM, running Ubuntu 18.04.
@@ -16,7 +17,11 @@ With less memory, the largest datasets could cause out-of-memory issues. In part
 * [Docker](http://www.docker.com) is needed to run the experiments.
 * To perform the comparison with the other tools (Table 5 in the paper) a GPU is needed. Also Docker need to be configured to use it, this require to install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
-### Setup
+### Reproduce the comparison with other frameworks
+In the paper we compared the performance of Generalized Supervised Meta-blocking with [Sudowoodo](https://github.com/megagonlabs/sudowoodo), [ContextualBlocker](https://github.com/boscoj2008/ContextualBlocker-for-EM), [DeepBlocker](https://github.com/qcri/DeepBlocker) and [Sparkly](https://github.com/anhaidgroup/sparkly).
+To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
+
+### Reproduce the main experiments
 #### Step 1
 Open the file `config/config.ini` and set, based on your system,
 * `max_memory` is the maximum memory used by Apache Spark.
