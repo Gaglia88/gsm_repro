@@ -31,7 +31,7 @@ Inside the docker machine, move in the `comparison` folder and run the script `r
 ##### Step 3
 Close the docker machine and proceed with the main experiments.
 
-### 2. Main experiments
+#### 2. Main experiments
 ##### Step 1
 Open the file `config/config.ini` and set, based on your system,
 * `max_memory` is the maximum memory used by Apache Spark.
