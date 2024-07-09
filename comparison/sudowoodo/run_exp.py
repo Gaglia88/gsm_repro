@@ -83,6 +83,9 @@ if __name__ == "__main__":
     os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_500')
     os.rename('/home/app/comparison/sudowoodo/data/em_50', '/home/app/comparison/sudowoodo/data/em')
     
+    if not os.path.isdir('/home/app/results/'):
+        os.makedirs('/home/app/results/', exist_ok=True)
+    
     out = open('/home/app/results/sudowoodo_results_50.csv', 'wt')
     out.write("dataset;recall;precision;f1;train_time;block_time;ov_time\n")
     for d in datasets:

@@ -13,6 +13,7 @@ import time
 import json
 import torchtext
 torchtext.disable_torchtext_deprecation_warning()
+import os
 
 # In[10]:
 
@@ -135,6 +136,10 @@ def do_process(dataset, k, idfield = "realProfileID", model="AutoEncoderTupleEmb
 # In[17]:
 
 if __name__ == "__main__":
+    if not os.path.isdir('/home/app/results/'):
+        os.makedirs('/home/app/results/', exist_ok=True)
+
+
     out = open('/home/app/results/deepblocker.csv', 'wt')
     out.write("k;dataset;model_name;recall;precision;candidates;train_time;block_time;overall_time\n")
     for model in models:

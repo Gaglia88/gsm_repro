@@ -114,6 +114,9 @@ key_values = {
 
 datasets = load_datasets(dtype='clean')
 
+if not os.path.isdir('/home/app/results/'):
+    os.makedirs('/home/app/results/', exist_ok=True)
+        
 out = open('/home/app/results/contextual_blocker.csv', 'wt')
 out.write("dataset;recall;precision;f1;ov_time\n")
 for d in datasets:

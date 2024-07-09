@@ -115,6 +115,9 @@ def block(dataset, limit=50):
 
 if __name__ == "__main__":
     datasets = load_datasets(dtype="clean")
+    
+    if not os.path.isdir('/home/app/results/'):
+        os.makedirs('/home/app/results/', exist_ok=True)
 
     out = open('/home/app/results/sparkly_k10.csv', 'wt')
     out.write("dataset;k;recall;precision;f1;runtime\n")
