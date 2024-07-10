@@ -17,6 +17,7 @@ from transformers import AutoTokenizer
 from simcse import SimCSE
 import pandas as pd
 import json
+import os
 
 def load_datasets(path='/home/app/datasets/datasets.json', dtype=''):
     f = open(path)
