@@ -45,10 +45,10 @@ RUN conda init && . ~/.bashrc && conda activate py10 && make install
 
 WORKDIR /home/app
 
-RUN conda init && . ~/.bashrc && conda activate py10 && pip install scikit-learn
-RUN conda init && . ~/.bashrc && conda activate py10 && pip install torch
-RUN conda init && . ~/.bashrc && conda activate py10 && pip install fasttext
-RUN conda init && . ~/.bashrc && conda activate py10 && pip install torchtext
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install scikit-learn==1.5.0
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install torch==2.3.1
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install fasttext==0.9.3
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install torchtext==0.18.0
 RUN conda init && . ~/.bashrc && conda activate py10 && pip install joblib==1.2.0
 RUN conda init && . ~/.bashrc && conda activate py10 && pip install mmh3==3.0.0
 RUN conda init && . ~/.bashrc && conda activate py10 && pip install numba==0.56.4
