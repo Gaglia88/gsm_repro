@@ -64,7 +64,7 @@ RUN conda init && . ~/.bashrc && conda activate py10 && pip install pandas==1.5.
 RUN conda create -n py9 python=3.9 -y
 RUN conda init && . ~/.bashrc && conda activate py9 && pip install simcse==0.4
 RUN conda init && . ~/.bashrc && conda activate py9 && pip install cdlib==0.4.0
-RUN conda init && . ~/.bashrc && conda activate py9 && networkx==2.6.0 
+RUN conda init && . ~/.bashrc && conda activate py9 && pip install networkx==2.6.0 
 
 RUN  conda create -n py37 python=3.7.10
 #RUN conda init && . ~/.bashrc && conda activate py37 && conda install -c nvidia -y cuda-nvcc
