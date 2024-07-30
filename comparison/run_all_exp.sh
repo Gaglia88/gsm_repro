@@ -45,11 +45,11 @@ echo "Sudowoodo"
 conda activate py37
 cd sudowoodo
 # Download needed datasets
-if [ ! -d "data" ]; then
+if [ ! -d "/home/app/comparison/sudowoodo/data" ]; then
    echo "Download Sudowoodo data"
-   wget https://sparc20.ing.unimore.it/gsm_repro/sudowoodo_data.tar.gz
-   tar -xvf sudowoodo_data.tar.gz
-   rm sudowoodo_data.tar.gz
+   wget -P /home/app/comparison/sudowoodo/ https://sparc20.ing.unimore.it/gsm_repro/sudowoodo_data.tar.gz
+   tar -xvf /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz -C /home/app/comparison/sudowoodo/
+   rm /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz
 fi
 if [ ! -d "apex" ]; then
    git clone https://github.com/NVIDIA/apex
