@@ -5,7 +5,7 @@ RUN apt-get install -y build-essential git curl wget
 
 RUN apt-get install -y python3.7
 RUN apt-get install -y python3-distutils
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN curl https://bootstrap.pypa.io/pip/3.7/get-pip.py -o get-pip.py
 RUN python3.7 get-pip.py
 RUN rm get-pip.py
 RUN python3.7 -m pip install pip
