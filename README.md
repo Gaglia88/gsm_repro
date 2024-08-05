@@ -23,7 +23,7 @@ In the paper we compared the performance of Generalized Supervised Meta-blocking
 To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
 
 ##### Step 1
-Move in the `comparison` folder and run the command `start_docker.sh`, this will create and start a new docker machine called `gsm_comparison`.
+Move in the `comparison` folder and run the command `start_docker.sh`$${\color{red}*}$$, this will create and start a new docker machine called `gsm_comparison`.
 
 ##### Step 2
 Inside the docker machine, move in the `comparison` folder and run the script `run_all_exp.sh`, this will process all datasets with the four frameworks.
@@ -43,7 +43,7 @@ Open the file `config/config.ini` and set, based on your system,
 Open the file `run_all_tests.sh` and set the `MAX_MEMORY` parameter based on your system configuration. This is the maximum memory that can be used by the Java Virtual Machine.
 
 ##### Step 3
-Open a shell, move to the `docker` folder, and run the script `start_docker.sh`. The script will run the docker-machine and login inside it.
+Open a shell, move to the `docker` folder, and run the script `start_docker.sh`$${\color{red}*}$$. The script will run the docker-machine and login inside it.
 
 ##### Step 4
 Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
@@ -53,6 +53,11 @@ When all the experiments are completed, run the script `start_notebook.sh`.
 This will start Jupyter inside the docker-machine which has a port forwarding on port 8888.
 Opening from the browser *your machine ip:8888* will open the notebook environment.
 Running the notebook it is possible to reproduce all the Figures/Tables of the paper [1].
+
+
+#### $${\color{red}*}$$ Note
+If the script is run on a remote machine, it will stop running when the session ends (e.g., if the connection to the machine is lost, or the terminal closed). For this reason, it is necessary to use an intermediary tool to let the process be detached from the current session.
+In our experiments, we employed the *screen* command. You can read [here](https://www.gnu.org/software/screen/manual/screen.html) how to use it.  Do not use the *nohup* instruction because it does not let to connect to the docker machine when the script is executed.
 
 ### References
 [1] Gagliardelli, L., Papadakis, G., Simonini, G., Bergamaschi, S., & Palpanas, T. (2023). GSM: A generalized approach to Supervised Meta-blocking for scalable entity resolution. _Information Systems_, 102307.
