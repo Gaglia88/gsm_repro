@@ -35,6 +35,8 @@ ENV JCC="$PYTHON -m jcc --shared"
 ENV NUM_FILES=16
 ENV TORCH_CUDA_ARCH_LIST="compute capability"
 
+RUN conda init && . ~/.bashrc && conda activate py10 && pip install setuptools==69.5.1
+
 WORKDIR /home/app/pylucene-9.4.1/jcc
 RUN conda init && . ~/.bashrc && conda activate py10 && python setup.py build
 RUN conda init && . ~/.bashrc && conda activate py10 && python setup.py install
