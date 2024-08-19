@@ -1,4 +1,9 @@
 #!/bin/bash
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec > >(tee gsm_comparison_log.txt) 2>&1
+# Everything below will go to the file 'log.txt':
+
 set -e
 
 # Checks if datasets exists, if not download them
@@ -15,14 +20,15 @@ conda activate py10
 echo "Deepblocker"
 cd deepblocker
 # Checks if embeddings exists, if not download them
-if [ ! -d "embedding" ]; then
+if [ ! -d "/home/app/comparison/deepblocker/embedding" ]; then
    echo "Downloads fasttext embeddings"
-   mkdir embedding
-   cd embedding
-   wget https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.zip
-   unzip wiki.en.zip
+   mkdir /home/app/comparison/deepblocker/embedding
+   cd /home/app/comparison/deepblocker/embedding
+   wget -q -P /home/app/comparison/deepblocker/ https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.zip
+   unzip /home/app/comparison/deepblocker/wiki.en.zip -d /home/app/comparison/deepblocker/embedding
    cd ..
 fi
+
 python run_exp.py
 cd ..
 
@@ -47,7 +53,7 @@ cd sudowoodo
 # Download needed datasets
 if [ ! -d "/home/app/comparison/sudowoodo/data" ]; then
    echo "Download Sudowoodo data"
-   wget -P /home/app/comparison/sudowoodo/ https://sparc20.ing.unimore.it/gsm_repro/sudowoodo_data.tar.gz
+   wget -q -P /home/app/comparison/sudowoodo/ https://sparc20.ing.unimore.it/gsm_repro/sudowoodo_data.tar.gz
    tar -xvf /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz -C /home/app/comparison/sudowoodo/
    rm /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz
 fi
@@ -59,7 +65,13 @@ cd apex
 python setup.py install
 cd ..
 python run_exp.py
-rm -rf mlruns
-rm -rf result_blocking
+# Remove data for space saving
+rm -rf /home/app/comparison/sudowoodo/mlruns
+rm -rf /home/app/comparison/sudowoodo/result_blocking
+rm -rf /home/app/comparison/sudowoodo/data
+rm -rf /home/app/comparison/deepblocker/embedding
+rm /home/app/comparison/deepblocker/wiki.en.zip
+rm -rf /home/app/comparison/sudowoodo/apex
+rm /home/app/comparison/sudowoodo/blocking_result.pkl
 conda deactivate
 cd ..
