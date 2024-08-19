@@ -4,6 +4,7 @@ import random
 import pickle
 import os
 from progressive_utils import Utils
+import shutil
 
 class PruningUtils(object):
     @staticmethod
@@ -225,6 +226,10 @@ def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs",
                 f = open(f'{outdir}comp_{f}_run_{i}.pickle', 'wb')
                 pickle.dump(res, f)
                 f.close()
+    
+    # Remove files to free space
+    if os.getenv('FREE_SPACE')=="1":
+        shutil.rmtree(f'{base_path}/{dataset}')
     
 if __name__ == '__main__':
     base_path = "/home/app/progressive/files"

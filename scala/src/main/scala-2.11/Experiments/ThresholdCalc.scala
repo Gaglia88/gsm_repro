@@ -85,7 +85,7 @@ object ThresholdCalc {
     config.close()
 
     val input = Source.fromFile("/home/app/results/01b_blocking_stats.csv")
-    val datasets = input.getLines().drop(1).map(l => {
+    val datasets = input.getLines().toList.drop(1).map(l => {
       val data = l.split(",")
       data(0)
       DatasetStats(data(0), data(2).toDouble.toInt, data(1).toInt)
