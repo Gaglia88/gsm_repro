@@ -16,11 +16,12 @@ import scala.util.parsing.json.JSON
 import java.io.PrintWriter
 
 import SparkER.DataStructures.Profile
-import breeze.numerics.log
 import org.apache.spark.rdd.RDD
 
 import java.nio.file.Paths
 import java.nio.file.Files
+import scala.reflect.io.Directory
+import java.io.File
 
 
 /**
@@ -325,6 +326,10 @@ object BuildFeatures {
 
     val featuresDF = sparkSession.createDataFrame(pairsFeatures).toDF("p1", "p2", "cfibf", "raccb", "js", "numCompP1", "numCompP2", "rs", "aejs", "nrs", "wjs", "is_match")
 
+    if (Files.exists(Paths.get(outputPath + dataset.name))) {
+      val directory = new Directory(new File(outputPath + dataset.name))
+      directory.deleteRecursively()
+    }
     featuresDF.coalesce(1).write.parquet(outputPath + dataset.name)
 
     val t2 = Calendar.getInstance()
@@ -398,8 +403,8 @@ object BuildFeatures {
     val stats = datasets.map { d =>
       generateFeatures(d, outputPath)
     }
-	
-	Files.createDirectories(Paths.get("/home/app/results/"))
+
+    Files.createDirectories(Paths.get("/home/app/results/"))
 
     val out = new PrintWriter("/home/app/results/01_blocking_performance.csv")
     val out2 = new PrintWriter("/home/app/results/01b_blocking_stats.csv")

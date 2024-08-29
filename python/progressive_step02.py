@@ -181,55 +181,69 @@ def get_pps_results(features, metric, profile_index, block_index, separator_ids,
     return res
 
 def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs", "aejs", "nrs", "wjs"], budget=50):
-    print(dataset)
-    f = open(f'{base_path}/{dataset}/profile_index_{dataset}.pickle', 'rb')
-    profile_index = pickle.load(f)
-    f.close()
-    
-    f = open(f'{base_path}/{dataset}/block_index_{dataset}.pickle', 'rb')
-    block_index = pickle.load(f)
-    f.close()
-    
-    f = open(f'{base_path}/{dataset}/separator_ids_{dataset}.pickle', 'rb')
-    separator_ids = pickle.load(f)
-    f.close()
-    
-    f = open(f'{base_path}/{dataset}/new_gt_{dataset}.pickle', 'rb')
-    new_gt = pickle.load(f)
-    f.close()
-    
-    features_no_train = pd.read_parquet(f'{base_path}/{dataset}/features.parquet')
-    weights = pd.read_parquet(f'{base_path}/{dataset}/weights.parquet')
-
-    num_matches = len(new_gt) - int(budget / 2)
-
-    n = num_matches * 20    
     outdir = f"{base_path}/comparisons/{dataset}/"
     if not os.path.isdir(outdir):
         os.makedirs(outdir)
 
-    
+    all_done = True
     for i in range(0, 5):
-        print(f"  Step {i}")
-        
         if not os.path.isfile(f'{outdir}comp_sup_mb_run_{i}.pickle'):
-            pps_sup_mb = get_pps_results(weights, "p_match", profile_index, block_index, separator_ids, new_gt, n=n)
-            
-            f = open(f'{outdir}comp_sup_mb_run_{i}.pickle', 'wb')
-            pickle.dump(pps_sup_mb, f)
-            f.close()
-        
+            all_done = False
+            break
         
         for f in all_features:
             if not os.path.isfile(f'{outdir}comp_{f}_run_{i}.pickle'):
-                res = get_pps_results(features_no_train, f, profile_index, block_index, separator_ids, new_gt, n=n)
-                f = open(f'{outdir}comp_{f}_run_{i}.pickle', 'wb')
-                pickle.dump(res, f)
+                all_done = False
+                break
+        if not all_done:
+            break
+
+    if not all_done:
+        print(dataset)
+        
+        f = open(f'{base_path}/{dataset}/profile_index_{dataset}.pickle', 'rb')
+        profile_index = pickle.load(f)
+        f.close()
+        
+        f = open(f'{base_path}/{dataset}/block_index_{dataset}.pickle', 'rb')
+        block_index = pickle.load(f)
+        f.close()
+        
+        f = open(f'{base_path}/{dataset}/separator_ids_{dataset}.pickle', 'rb')
+        separator_ids = pickle.load(f)
+        f.close()
+        
+        f = open(f'{base_path}/{dataset}/new_gt_{dataset}.pickle', 'rb')
+        new_gt = pickle.load(f)
+        f.close()
+        
+        features_no_train = pd.read_parquet(f'{base_path}/{dataset}/features.parquet')
+        weights = pd.read_parquet(f'{base_path}/{dataset}/weights.parquet')
+
+        num_matches = len(new_gt) - int(budget / 2)
+
+        n = num_matches * 20
+        for i in range(0, 5):
+            print(f"  Step {i}")
+            
+            if not os.path.isfile(f'{outdir}comp_sup_mb_run_{i}.pickle'):
+                pps_sup_mb = get_pps_results(weights, "p_match", profile_index, block_index, separator_ids, new_gt, n=n)
+                
+                f = open(f'{outdir}comp_sup_mb_run_{i}.pickle', 'wb')
+                pickle.dump(pps_sup_mb, f)
                 f.close()
-    
-    # Remove files to free space
-    if os.getenv('FREE_SPACE')=="1":
-        shutil.rmtree(f'{base_path}/{dataset}')
+            
+            
+            for f in all_features:
+                if not os.path.isfile(f'{outdir}comp_{f}_run_{i}.pickle'):
+                    res = get_pps_results(features_no_train, f, profile_index, block_index, separator_ids, new_gt, n=n)
+                    f = open(f'{outdir}comp_{f}_run_{i}.pickle', 'wb')
+                    pickle.dump(res, f)
+                    f.close()
+        
+        # Remove files to free space
+        if os.getenv('FREE_SPACE')=="1":
+            shutil.rmtree(f'{base_path}/{dataset}')
     
 if __name__ == '__main__':
     base_path = "/home/app/progressive/files"
