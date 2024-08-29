@@ -47,6 +47,7 @@ Open a shell, move to the `docker` folder, and run the script `start_docker.sh`$
 
 ##### Step 4
 Inside the docker machine, run the script `run_all_tests.sh`. It will run all the experiments. The resulting files will be placed inside the *results* folder.
+**Note**: if the execution is interrupted, the script is able to restart from the point of failure. So, it is possible to run it multiple times. At the first run it will create a *progress.txt* file to track the completed experiments.
 
 ##### Step 5
 When all the experiments are completed, run the script `start_notebook.sh`.
