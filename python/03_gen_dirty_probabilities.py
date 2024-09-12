@@ -91,6 +91,7 @@ if __name__ == "__main__":
         print(f"Read features for {d['name']}")
         # Load the features
         features = pd.read_parquet(f"/home/app/features/{d['name']}")
+        features[features.select_dtypes(np.float64).columns] = features.select_dtypes(np.float64).astype(np.float16)
         
         # For each training set size
         for train_set_size in training_set_sizes:
