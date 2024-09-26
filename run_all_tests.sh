@@ -194,7 +194,8 @@ cd python
 # If not, do it
 if check_result 13; then
 	echo "[GSM REPRO] Perform the progressive experiments - Step 1"
-	spark-submit --conf spark.driver.memory=${MAX_MEMORY} --conf spark.executor.memory=${MAX_MEMORY} --conf spark.local.dir=/home/app/tmp/ --conf spark.driver.maxResultSize=-1 progressive_step01.py
+	spark-submit --conf spark.driver.memory=${MAX_MEMORY} --conf spark.executor.memory=${MAX_MEMORY} --conf spark.local.dir=/home/app/tmp/ --conf spark.driver.maxResultSize=-1 progressive_step01a.py
+	python3.7 progressive_step01b.py
 	python3.7 /home/app/python/sanity_check.py 13
 fi
 
