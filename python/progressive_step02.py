@@ -181,6 +181,7 @@ def get_pps_results(features, metric, profile_index, block_index, separator_ids,
     return res
 
 def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs", "aejs", "nrs", "wjs"], budget=50):
+    print(f"Processing {dataset}", flush=True)
     outdir = f"{base_path}/comparisons/{dataset}/"
     if not os.path.isdir(outdir):
         os.makedirs(outdir)
@@ -197,9 +198,12 @@ def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs",
                 break
         if not all_done:
             break
-
+            
+    if all_done:
+        print(f"All files done for the dataset {dataset}", flush=True)
+    
     if not all_done:
-        print(dataset)
+        print(dataset, flush=True)
         
         f = open(f'{base_path}/{dataset}/profile_index_{dataset}.pickle', 'rb')
         profile_index = pickle.load(f)
