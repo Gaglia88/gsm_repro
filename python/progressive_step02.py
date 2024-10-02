@@ -86,7 +86,8 @@ class PPS(object):
             duplication_likelihood = 0
 
             for n_id in neighbors:
-                if (profile_id, n_id) in self.w_index:
+                #if (profile_id, n_id) in self.w_index:
+                try:
                     weight = self.w_index[(profile_id, n_id)]
                     duplication_likelihood += weight
                     if top_comp[2] < weight:
@@ -94,7 +95,8 @@ class PPS(object):
                         top_n = list([n_id])
                     elif top_comp[2] == weight:
                         top_n.append(n_id)
-
+                except:
+                    pass
             # If there is a valid comparison, adds it to the queue
             if top_comp[2] > 0:
                 # If there are more neighbors with the same top-1 weight
@@ -128,8 +130,11 @@ class PPS(object):
 
                 for n_id in neighbors:
                     if n_id not in self.checked_entities:
-                        if (profile_id, n_id) in self.w_index:
+                        #if (profile_id, n_id) in self.w_index:
+                        try:
                             sorted_stack.add((profile_id, n_id, self.w_index[(profile_id, n_id)], random.random()))
+                        except:
+                            pass
 
                 # Randomizes the selection of the pairs with the same weight
                 self.comparison_list = list(sorted_stack)
@@ -151,10 +156,13 @@ class PPS(object):
 
 
 def get_pps_results(features, metric, profile_index, block_index, separator_ids, new_gt, n=-1):
+    print("building index", flush=True)
     # Generates an index that given a pair returns their score (number of shared blocks)
-    w_index = {}
-    for index, row in features.iterrows():
-        w_index[(row['p1'], row['p2'])] = row[metric]
+    #w_index = {}
+    #for index, row in features.iterrows():
+    #    w_index[(row['p1'], row['p2'])] = row[metric]
+    w_index = features[["p1", "p2", metric]].set_index(["p1", "p2"]).to_dict()[metric]
+    print("Done", flush=True)
 
     # PPS with CBS
     pps = PPS(profile_index, block_index, w_index, separator_ids=separator_ids)
@@ -222,21 +230,13 @@ def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs",
         f.close()
         
         features_no_train = pd.read_parquet(f'{base_path}/{dataset}/features.parquet')
-        weights = pd.read_parquet(f'{base_path}/{dataset}/weights.parquet')
 
         num_matches = len(new_gt) - int(budget / 2)
 
         n = num_matches * 20
+        
         for i in range(0, 5):
-            print(f"  Step {i}")
-            
-            if not os.path.isfile(f'{outdir}comp_sup_mb_run_{i}.pickle'):
-                pps_sup_mb = get_pps_results(weights, "p_match", profile_index, block_index, separator_ids, new_gt, n=n)
-                
-                f = open(f'{outdir}comp_sup_mb_run_{i}.pickle', 'wb')
-                pickle.dump(pps_sup_mb, f)
-                f.close()
-            
+            print(f" Standard features - Step {i}")
             
             for f in all_features:
                 if not os.path.isfile(f'{outdir}comp_{f}_run_{i}.pickle'):
@@ -244,6 +244,20 @@ def make_process(base_path, dataset, all_features=["cfibf", "raccb", "js", "rs",
                     f = open(f'{outdir}comp_{f}_run_{i}.pickle', 'wb')
                     pickle.dump(res, f)
                     f.close()
+        
+        del features_no_train
+        
+        weights = pd.read_parquet(f'{base_path}/{dataset}/weights.parquet')
+        
+        for i in range(0, 5):
+            print(f"GSM - Step {i}")
+            
+            if not os.path.isfile(f'{outdir}comp_sup_mb_run_{i}.pickle'):
+                pps_sup_mb = get_pps_results(weights, "p_match", profile_index, block_index, separator_ids, new_gt, n=n)
+                
+                f = open(f'{outdir}comp_sup_mb_run_{i}.pickle', 'wb')
+                pickle.dump(pps_sup_mb, f)
+                f.close()
         
         # Remove files to free space
         if os.getenv('FREE_SPACE')=="1":
