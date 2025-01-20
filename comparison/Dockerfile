@@ -10,6 +10,9 @@ RUN apt-get install -y build-essential git curl wget unzip
 RUN apt-get install -y python3-distutils
 RUN apt-get install -y python3-dev
 
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN . "$HOME/.cargo/env"    
+
 ENV CONDA_DIR /opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda
