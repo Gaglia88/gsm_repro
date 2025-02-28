@@ -3,4 +3,4 @@ if [ -z "$(docker images -q lucagaglia/gsm_comparison 2> /dev/null)" ]; then
   #docker build -t gsm_comparison .
   docker pull lucagaglia/gsm_comparison
 fi
-docker run -it --gpus all --mount type=bind,source="$(pwd)/../",target=/home/app lucagaglia/gsm_comparison
+docker run --privileged -it --gpus all --mount type=bind,source="$(pwd)/../",target=/home/app lucagaglia/gsm_comparison
