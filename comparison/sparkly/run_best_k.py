@@ -9,8 +9,12 @@ import os
 import time
 import json
 import traceback
+from configparser import ConfigParser
 
-spark = SparkSession.builder.getOrCreate()
+config = ConfigParser()
+config.read('/home/app/config/config.ini')
+max_spark_memory = config.get('spark', 'max_memory')
+spark = SparkSession.builder.config("spark.driver.memory", max_spark_memory).config("spark.executor.memory", max_spark_memory).getOrCreate()
 
 def load_datasets(path='/home/app/datasets/datasets.json', dtype=''):
     f = open(path)
