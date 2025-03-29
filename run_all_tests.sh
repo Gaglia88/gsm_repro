@@ -35,10 +35,10 @@ export SPARK_LOCAL_IP="localhost"
 export SBT_OPTS="-Xmx$MAX_MEMORY"
 
 # Checks if datasets exists, if not download them
-if [ ! -d "datasets" ]; then
-   wget https://dbgroup.ing.unimore.it/gsm_repro/gsm_repro_datasets.tar.gz
-   tar -xvf gsm_repro_datasets.tar.gz
-   rm gsm_repro_datasets.tar.gz
+if [ ! -e "/home/app/datasets/downloaded.txt" ]; then
+   wget -P /home/app/ https://dbgroup.ing.unimore.it/gsm_repro/gsm_repro_datasets.tar.gz
+   tar -xvf /home/app/gsm_repro_datasets.tar.gz -C /home/app/
+   rm /home/app/gsm_repro_datasets.tar.gz
 fi
 
 # Checks if spark exists, if not download it
