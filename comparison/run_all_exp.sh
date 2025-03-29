@@ -10,7 +10,7 @@ exec > >(tee gsm_comparison_log.txt) 2>&1
 export FREE_SPACE=1
 
 # Checks if datasets exists, if not download them
-if [ ! -d "/home/app/datasets" ]; then
+if [ ! -e "/home/app/datasets/downloaded.txt" ]; then
    wget -P /home/app/ https://dbgroup.ing.unimore.it/gsm_repro/gsm_repro_datasets.tar.gz
    tar -xvf /home/app/gsm_repro_datasets.tar.gz -C /home/app/
    rm /home/app/gsm_repro_datasets.tar.gz
