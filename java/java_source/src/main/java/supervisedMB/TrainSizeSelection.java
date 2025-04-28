@@ -202,9 +202,9 @@ public class TrainSizeSelection {
         int num_runs = Integer.parseInt(props.getProperty("repetitions"));
 
         int[] train_set_sizes = {20, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500};
-        int blast_feat_id = 78;
-        int rcnp_feat_id = 187;
-        int original_feat_id = 128;
+        int blast_feat_id = Integer.parseInt(props.getProperty("best_blast_set_id"));
+        int rcnp_feat_id = Integer.parseInt(props.getProperty("best_rcnp_set_id"));
+        int original_feat_id = Integer.parseInt(props.getProperty("supmb_original_set_id"));
 
         String[] datasets = {"AbtBuy", "DblpAcm", "ScholarDblp", "AmazonGP", "ImdbTmdb", "ImdbTvdb", "TmdbTvdb", "Movies", "WalmartAmazon"};
         ArrayList<String> dnames = new ArrayList<>(Arrays.asList(datasets));

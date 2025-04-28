@@ -437,18 +437,16 @@ public class AlgorithmSelection {
         FileInputStream in = new FileInputStream("/home/app/config/config.ini");
         props.load(in);
         int num_runs = Integer.parseInt(props.getProperty("repetitions"));
+        ArrayList<String> dnames = Dataset.getNames(Dataset.loadDatasets("/home/app/datasets/datasets.json", "clean"));
+        int train_size = Integer.parseInt(props.getProperty("train_set_size"));;
+        int conf_id = Integer.parseInt(props.getProperty("supmb_original_set_id"));;
 
         PrintWriter out = new PrintWriter(new File("/home/app/results/algorithm_selection_java.csv"));
         out.println("dataset;train_size;conf_id;run;algorithm;matches;comparisons;recall;precision;F1;RT");
 
         HashMap<String, Stats> stats = load_stats("/home/app/results/01b_blocking_stats.csv");
-        String[] datasets = {"AbtBuy", "DblpAcm", "ScholarDblp", "AmazonGP", "ImdbTmdb", "ImdbTvdb", "TmdbTvdb", "Movies", "WalmartAmazon"};
-        ArrayList<String> dnames = new ArrayList<String>(Arrays.asList(datasets));
 
         for (String dname : stats.keySet()) {
-            int train_size = 500;
-            int conf_id = 128;
-
             for (int run = 0; run < num_runs; run++) {
                 if (dnames.contains(dname)) {
                     System.out.println("\n\nCurrent dataset\t:\t" + dname);

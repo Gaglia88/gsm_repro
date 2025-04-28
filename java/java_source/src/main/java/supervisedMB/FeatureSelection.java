@@ -158,14 +158,12 @@ public class FeatureSelection {
         FileInputStream in = new FileInputStream("/home/app/config/config.ini");
         props.load(in);
         int num_runs = Integer.parseInt(props.getProperty("repetitions"));
-
-        int num_feature_sets = 255;
-        String[] datasets = {"AbtBuy", "DblpAcm", "ScholarDblp", "AmazonGP", "ImdbTmdb", "ImdbTvdb", "TmdbTvdb", "Movies", "WalmartAmazon"};
-        ArrayList<String> dnames = new ArrayList<>(Arrays.asList(datasets));
+        int train_size = Integer.parseInt(props.getProperty("train_set_size"));
+        int num_feature_sets = Integer.parseInt(props.getProperty("max_feature_id"));
+        ArrayList<String> dnames = Dataset.getNames(Dataset.loadDatasets("/home/app/datasets/datasets.json", "clean"));
 
         for (String dname : stats.keySet()) {
             if (dnames.contains(dname)) {
-                int train_size = 500;
                 for (int conf_id = 1; conf_id <= num_feature_sets; conf_id++) {
 
                     for (int run = 0; run < num_runs; run++) {

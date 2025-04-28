@@ -267,15 +267,16 @@ public class Scalability {
 
         HashMap<String, Stats> stats = load_stats("/home/app/results/01b_blocking_stats.csv");
 
-        int num_runs = 3;
+        Properties props = new Properties();
+        FileInputStream in = new FileInputStream("/home/app/config/config.ini");
+        props.load(in);
+        int num_runs = Integer.parseInt(props.getProperty("repetitions"));
+        ArrayList<String> dnames = Dataset.getNames(Dataset.loadDatasets("/home/app/datasets/datasets.json", "dirty"));
+        int blast_feat_id = Integer.parseInt(props.getProperty("best_blast_set_id"));
+        int rcnp_feat_id = Integer.parseInt(props.getProperty("best_rcnp_set_id"));
+        int original_feat_id = Integer.parseInt(props.getProperty("supmb_original_set_id"));
 
-        int blast_feat_id = 78;
-        int rcnp_feat_id = 187;
-        int original_feat_id = 128;
         int train_size;
-
-        String[] datasets = {"d10K", "d50K", "d100K", "d200K", "d300K"};
-        ArrayList<String> dnames = new ArrayList<>(Arrays.asList(datasets));
 
         for (String dname : stats.keySet()) {
             if (dnames.contains(dname)) {
