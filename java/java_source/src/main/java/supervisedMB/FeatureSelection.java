@@ -201,7 +201,7 @@ public class FeatureSelection {
                     }
                 }
             }
-            out.close();
         }
+		out.close();
     }
 }
