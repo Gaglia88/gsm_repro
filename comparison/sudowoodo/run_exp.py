@@ -55,10 +55,37 @@ def process(dataset, basepath='em'):
     return recall, precision, f1, (etrain-stime), (etime-etrain), (etime-stime)
 
 
-datasets = ['abtBuy', 'DblpAcm', 'movies', 'imdb_tvdb', 'tmdb_tvdb', 'scholarDblp', 'walmartAmazon', 'amazonGoogleProducts', 'imdb_tmdb']
-
+def load_datasets(path='/home/app/datasets/datasets.json', dtype=''):
+    f = open(path)
+    datasets = json.load(f)
+    f.close()
+    if len(dtype) > 0:
+        datasets = list(filter(lambda d: d['type']==dtype, datasets))
+    return datasets
 
 if __name__ == "__main__":
+    datasets = []
+    dinfo = load_datasets(dtype="clean")
+    for d in dinfo:
+        if d == "WalmartAmazon":
+            datasets.append("walmartAmazon")
+        elif d == "Movies":
+            datasets.append("movies")
+        elif d == "TmdbTvdb":
+            datasets.append("tmdb_tvdb")
+        elif d == "ImdbTvdb":
+            datasets.append("imdb_tvdb")
+        elif d == "ImdbTmdb":
+            datasets.append("imdb_tmdb")
+        elif d == "AmazonGP":
+            datasets.append("amazonGoogleProducts")
+        elif d == "ScholarDblp":
+            datasets.append("scholarDblp")
+        elif d == "DblpAcm":
+            datasets.append("DblpAcm")
+        elif d == "AbtBuy":
+            datasets.append("abtBuy") 
+    
     if os.path.isdir('/home/app/comparison/sudowoodo/data/em_500'):
         os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_50')
         os.rename('/home/app/comparison/sudowoodo/data/em_500', '/home/app/comparison/sudowoodo/data/em')

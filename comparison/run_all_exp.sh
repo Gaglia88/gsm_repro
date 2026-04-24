@@ -60,9 +60,9 @@ if [ ! -d "/home/app/comparison/sudowoodo/data" ]; then
    tar -xvf /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz -C /home/app/comparison/sudowoodo/
    rm /home/app/comparison/sudowoodo/sudowoodo_data.tar.gz
 fi
-if [ ! -d "apex" ]; then
-   git clone https://github.com/NVIDIA/apex
-fi
+# if [ ! -d "apex" ]; then
+#    git clone https://github.com/NVIDIA/apex
+# fi
 conda install -c nvidia -y cuda-nvcc
 cd apex
 python setup.py install
