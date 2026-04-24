@@ -5,6 +5,7 @@ import pickle
 import traceback
 import shutil
 import os
+import json
 
 def calc_metrics(dataset, basepath):
     pf = open('blocking_result.pkl', 'rb')
@@ -66,25 +67,26 @@ def load_datasets(path='/home/app/datasets/datasets.json', dtype=''):
 if __name__ == "__main__":
     datasets = []
     dinfo = load_datasets(dtype="clean")
+    
     for d in dinfo:
-        if d == "WalmartAmazon":
+        if d['name'] == "WalmartAmazon":
             datasets.append("walmartAmazon")
-        elif d == "Movies":
+        elif d['name'] == "Movies":
             datasets.append("movies")
-        elif d == "TmdbTvdb":
+        elif d['name'] == "TmdbTvdb":
             datasets.append("tmdb_tvdb")
-        elif d == "ImdbTvdb":
+        elif d['name'] == "ImdbTvdb":
             datasets.append("imdb_tvdb")
-        elif d == "ImdbTmdb":
+        elif d['name'] == "ImdbTmdb":
             datasets.append("imdb_tmdb")
-        elif d == "AmazonGP":
+        elif d['name'] == "AmazonGP":
             datasets.append("amazonGoogleProducts")
-        elif d == "ScholarDblp":
+        elif d['name'] == "ScholarDblp":
             datasets.append("scholarDblp")
-        elif d == "DblpAcm":
+        elif d['name'] == "DblpAcm":
             datasets.append("DblpAcm")
-        elif d == "AbtBuy":
-            datasets.append("abtBuy") 
+        elif d['name'] == "AbtBuy":
+            datasets.append("abtBuy")
     
     if os.path.isdir('/home/app/comparison/sudowoodo/data/em_500'):
         os.rename('/home/app/comparison/sudowoodo/data/em', '/home/app/comparison/sudowoodo/data/em_50')
