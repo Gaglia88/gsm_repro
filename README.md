@@ -18,6 +18,11 @@ With less memory, the largest datasets could cause out-of-memory issues. In part
 * To perform the comparison with the other tools (Table 5 in the paper) a GPU is needed. Also Docker need to be configured to use it, this require to install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
 ### Reproduce the experiments
+
+$${\textbf{\color{red}Note}}$$: It is possible to automatically run a lite version of the experiments, which requires less memory and disk space since it ignores the largest datasets.
+To do this, edit the `config/config.ini` file and set `mode=lite`.
+To visualize the results, use the notebook with the `_LITE` suffix in its name.
+
 #### 1. Comparison with other frameworks
 In the paper we compared the performance of Generalized Supervised Meta-blocking with [Sudowoodo](https://github.com/megagonlabs/sudowoodo), [ContextualBlocker](https://github.com/boscoj2008/ContextualBlocker-for-EM), [DeepBlocker](https://github.com/qcri/DeepBlocker) and [Sparkly](https://github.com/anhaidgroup/sparkly).
 To perform this comparison, a different docker machine is needed, due to the heterogeneity of the different setups.
