@@ -495,10 +495,21 @@ object CalcFeaturesTime {
 
     val out = new PrintWriter("/home/app/results/features_calc_time.csv")
     out.println("dataset;conf_id;features;blockingTime;featuresTime")
-
-    datasets.filter(d => List("Movies", "WalmartAmazon").contains(d.name)).foreach { d =>
-      generateFeatures(d, feats, out)
-    }
+	
+	val n = datasets.count(d =>
+	  List("Movies", "WalmartAmazon").contains(d.name)
+	)
+	
+	if (n == 2){ // full mode
+		datasets.filter(d => List("Movies", "WalmartAmazon").contains(d.name)).foreach { d =>
+		  generateFeatures(d, feats, out)
+		}
+	}
+	else{ //lite mode
+		datasets.filter(d => List("TmdbTvdb", "ScholarDblp").contains(d.name)).foreach { d =>
+		  generateFeatures(d, feats, out)
+		}
+	}
 
     out.close()
     sc.stop()

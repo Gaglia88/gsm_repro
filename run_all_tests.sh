@@ -48,6 +48,17 @@ if [ ! -d "$SPARK_DIR" ]; then
    rm spark-3.0.1-bin-hadoop2.7.tgz
 fi
 
+# Check the datasets to use for the experiments.
+# full=use all the datasets, lite=use only the smallest ones
+mode=$(grep '^mode=' /home/app/config/config.ini | cut -d'=' -f2)
+
+if [ "$mode" = "full" ]; then
+    cp "/home/app/datasets/datasets_full.json" "/home/app/datasets/datasets.json"
+
+elif [ "$mode" = "lite" ]; then
+    cp "/home/app/datasets/datasets_lite.json" "/home/app/datasets/datasets.json"
+fi
+
 cd scala
 # Check if the experiment was already performed
 # If not, do it

@@ -16,6 +16,17 @@ if [ ! -e "/home/app/datasets/downloaded.txt" ]; then
    rm /home/app/gsm_repro_datasets.tar.gz
 fi
 
+# Check the datasets to use for the experiments.
+# full=use all the datasets, lite=use only the smallest ones
+mode=$(grep '^mode=' /home/app/config/config.ini | cut -d'=' -f2)
+
+if [ "$mode" = "full" ]; then
+    cp "/home/app/datasets/datasets_full.json" "/home/app/datasets/datasets.json"
+
+elif [ "$mode" = "lite" ]; then
+    cp "/home/app/datasets/datasets_lite.json" "/home/app/datasets/datasets.json"
+fi
+
 source /opt/conda/etc/profile.d/conda.sh
 
 conda activate py10
